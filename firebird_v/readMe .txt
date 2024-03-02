@@ -17,8 +17,8 @@ Build succeeded.
 """
 7)This means your code is succesfully build
 8)Right click on file name above your code and click open contengency folder
-9)Open debug folder and their you will find ".hex" file 
-10)open "AVRDUDE_ATMEGA2560" folder that we provided and you will find "sktrun.bat" file there 
+9)Open debug folder and their you will find your ".hex" file 
+10)open "AVRDUDE_ATMEGA2560" folder after folder is extracted and you will find "sktrun.bat" file there 
 11)open cmd in this directory and type "stkrun" and enter ".hex" file location 
 12)attach firebird v with laptop through stk calble
 13)On the firebird v robot and press enter in cmd

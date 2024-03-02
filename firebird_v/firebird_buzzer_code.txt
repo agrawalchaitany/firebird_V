@@ -1,0 +1,35 @@
+/*
+ * GccApplication2.c
+ *
+ * Created: 28-02-2024 11:25:14
+ *  Author: sumit
+ */ 
+
+#define F_CPU 14745600
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+void pin_config(void){
+	DDRC=0X08;
+	PORTC=0X00;
+	
+}
+void buzzer_on(void){
+	PORTC=0X08;
+}
+void buzzer_of(void){
+	PORTC=0X00;
+}
+int main(void)
+
+{
+	pin_config();
+	
+    while(1)
+    {
+    buzzer_on();
+	_delay_ms(1000);
+	buzzer_of();
+	_delay_ms(1000); 
+    }
+}

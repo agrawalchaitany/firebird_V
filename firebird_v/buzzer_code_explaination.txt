@@ -1,0 +1,52 @@
+buzzer code explaion
+
+This is a simple program for an AVR microcontroller that turns a buzzer on and off at regular intervals. The `pin_config` function sets the PC3 pin (pin 3 on PORTC) as an output for the buzzer. The `buzzer_on` function sets the PC3 pin high to turn on the buzzer, and the `buzzer_off` function sets the PC3 pin low to turn off the buzzer. In the `main` function, the buzzer is turned on for 1 second (`_delay_ms(1000)`) and then turned off for 1 second repeatedly in an infinite loop.
+
+
+```c
+#define F_CPU 14745600
+```
+This line defines the CPU frequency as 14.7456 MHz, which is necessary for the delay functions to work correctly.
+
+```c
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+```
+These lines include necessary header files for AVR programming. `<avr/io.h>` for I/O register definitions, `<avr/interrupt.h>` for interrupt handling, and `<util/delay.h>` for creating delays.
+
+```c
+void pin_config(void){
+    DDRC=0X08;
+    PORTC=0X00;
+}
+```
+This function `pin_config` configures the pins. It sets the PC3 pin (pin 3 on PORTC) as an output for the buzzer (`DDRC=0X08;`) and sets the initial state of PORTC to 0, which turns the buzzer off (`PORTC=0X00;`).
+
+```c
+void buzzer_on(void){
+    PORTC=0X08;
+}
+```
+This function `buzzer_on` turns the buzzer on by setting PC3 (pin 3 on PORTC) high (`PORTC=0X08;`).
+
+```c
+void buzzer_of(void){
+    PORTC=0X00;
+}
+```
+This function `buzzer_off` turns the buzzer off by setting PC3 (pin 3 on PORTC) low (`PORTC=0X00;`).
+
+```c
+int main(void){
+    pin_config();
+    
+    while(1){
+        buzzer_on();
+        _delay_ms(1000);
+        buzzer_off();
+        _delay_ms(1000); 
+    }
+}
+```
+The `main` function calls `pin_config` to initialize the pins. Then, it enters an infinite loop (`while(1)`) where it repeatedly turns the buzzer on for 1 second (`_delay_ms(1000);`), and then off for 1 second (`_delay_ms(1000);`), creating a 1-second beep followed by a 1-second pause.

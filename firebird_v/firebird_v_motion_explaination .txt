@@ -1,0 +1,23 @@
+firebird v motion explaination :
+
+1. **`#define F_CPU 14745600`**: This line defines the CPU frequency as 14.7456 MHz. This value is used by the delay functions to calculate the correct delay times.
+
+2. **`#include <avr/io.h>`**: This line includes the necessary AVR I/O definitions for the microcontroller being used.
+
+3. **`#include <avr/interrupt.h>`**: This line includes the interrupt handling functions for the AVR microcontroller.
+
+4. **`#include <util/delay.h>`**: This line includes the delay functions for creating delays in the program.
+
+5. **`void motion_pin_config (void)`**: This function configures the motion pins. It sets the lower 4 bits (PA0-PA3) of PORTA as outputs for motor control and sets the upper 2 bits (PL3 and PL4) of PORTL as outputs for PWM generation.
+
+6. **`void port_init()`**: This function initializes the ports used for motor control by calling `motion_pin_config()`.
+
+7. **`void motion_set (unsigned char Direction)`**: This function sets the direction of the motors based on the `Direction` parameter. It first masks out the upper nibble of `Direction`, then stores the current state of PORTA in `PortARestore`, clears the lower nibble of `PortARestore`, and finally sets the lower nibble of `PortARestore` based on the `Direction`. The new value of `PortARestore` is then written back to PORTA to set the motor direction.
+
+8. **`void forward (void)`**, **`void back (void)`**, **`void left (void)`**, **`void right (void)`**, **`void soft_left (void)`**, **`void soft_right (void)`**, **`void soft_left_2 (void)`**, **`void soft_right_2 (void)`**, **`void stop (void)`**: These functions are used to control the motion of the robot in different directions. They call `motion_set()` with the appropriate direction values.
+
+9. **`void init_devices (void)`**: This function initializes the devices used in the program. It disables global interrupts (`cli()`), initializes the ports (`port_init()`), and enables global interrupts (`sei()`).
+
+10. **`int main()`**: The main function of the program. It first calls `init_devices()` to initialize the devices. Then, it enters an infinite loop where it performs a sequence of movements for each "bed" of movements. Each "bed" consists of a forward movement, a left turn, another forward movement, and a stop. These movements are performed with specific delays between them using `_delay_ms()` function calls.
+
+Overall, the program is designed to control the motion of a robot using an AVR microcontroller by setting the direction of the motors and controlling the duration of each movement using delay functions.

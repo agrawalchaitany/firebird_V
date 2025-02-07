@@ -67,7 +67,7 @@ This guide provides comprehensive instructions for programming the Firebird V ro
 
 ## 📚 Resources
 - [Atmel Studio Official Documentation](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
-- [Firebird V User Manual](link-to-manual)
+- [Firebird V introduction](https://youtu.be/cL9gz8EEXgY?si=NtXmMQX9xHrkJCJt)
 
 ## 🤝 Contributing
 Found an issue? Please open a GitHub issue or submit a pull request.
